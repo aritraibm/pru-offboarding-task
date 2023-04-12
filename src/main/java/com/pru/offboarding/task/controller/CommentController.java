@@ -23,14 +23,14 @@ public class CommentController {
 	@Autowired
 	private CommentService service;
 	
-	@PreAuthorize("hasAnyRole({'ROLE_ASSOCIATE','ROLE_ONBOARDING_REVIEWER','ROLE_ONBOARDING_MANAGER'})")
+	@PreAuthorize("hasAnyRole({'ROLE_ASSOCIATE','ROLE_OFFBOARDING_REVIEWER','ROLE_OFFBOARDING_MANAGER'})")
 	@GetMapping("/{id}")
 	public List<Comment> getCommentByID(@PathVariable(name = "id") String id){
 		List<Comment> comment= service.getCommentByEmpId(id);
 		return comment;
 	}
 	
-	@PreAuthorize("hasAnyRole({'ROLE_ASSOCIATE','ROLE_ONBOARDING_REVIEWER','ROLE_ONBOARDING_MANAGER'})")
+	@PreAuthorize("hasAnyRole({'ROLE_ASSOCIATE','ROLE_OFFBOARDING_REVIEWER','ROLE_OFFBOARDING_MANAGER'})")
 	@PostMapping("/add-comment")
 	public Comment saveOrUpdateCommentByID(@RequestBody Comment newComment){
 		Comment comment= service.insertComment(newComment);

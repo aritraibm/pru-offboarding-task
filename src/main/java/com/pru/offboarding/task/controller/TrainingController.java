@@ -28,14 +28,14 @@ public class TrainingController {
 	@Autowired
 	private TrainingService service;
 
-	@PreAuthorize("hasAnyRole({'ROLE_ASSOCIATE','ROLE_ONBOARDING_REVIEWER','ROLE_ONBOARDING_MANAGER'})")
+	@PreAuthorize("hasAnyRole({'ROLE_ASSOCIATE','ROLE_OFFBOARDING_REVIEWER','ROLE_OFFBOARDING_MANAGER'})")
 	@PostMapping("/add-training")
 	public Training addTraining(@RequestBody Training training) {
 		Training trng = service.saveTraining(training);
 		return trng;
 	}
 
-	@PreAuthorize("hasAnyRole({'ROLE_ONBOARDING_REVIEWER','ROLE_ONBOARDING_MANAGER'})")
+	@PreAuthorize("hasAnyRole({'ROLE_OFFBOARDING_REVIEWER','ROLE_OFFBOARDING_MANAGER'})")
 	@PutMapping(path ="/{id}")
 	public ResponseEntity<?> updateTraining(@RequestBody Training training, @PathVariable("id") String trainingId) {
 		Training updatedTraining = null;
@@ -54,14 +54,14 @@ public class TrainingController {
 		}
 	}
 
-	@PreAuthorize("hasAnyRole({'ROLE_ASSOCIATE','ROLE_ONBOARDING_REVIEWER','ROLE_ONBOARDING_MANAGER'})")
+	@PreAuthorize("hasAnyRole({'ROLE_ASSOCIATE','ROLE_OFFBOARDING_REVIEWER','ROLE_OFFBOARDING_MANAGER'})")
 	@GetMapping("/get-all-training")
 	public List<Training> getAllTraining(){
 		List<Training> trainings = service.getAllTraining();
 		return trainings;
 	}
 
-	@PreAuthorize("hasAnyRole({'ROLE_ONBOARDING_REVIEWER','ROLE_ONBOARDING_MANAGER'})")
+	@PreAuthorize("hasAnyRole({'ROLE_OFFBOARDING_REVIEWER','ROLE_OFFBOARDING_MANAGER'})")
 	@GetMapping("/{trainingId}")
 	public Training getTrainingById(@PathVariable("trainingId") String trainingId) throws TrainingNotFoundException {
 		Training trng=null;
@@ -69,7 +69,7 @@ public class TrainingController {
 		return trng;
 	}
 
-	@PreAuthorize("hasAnyRole({'ROLE_ONBOARDING_REVIEWER','ROLE_ONBOARDING_MANAGER'})")
+	@PreAuthorize("hasAnyRole({'ROLE_OFFBOARDING_REVIEWER','ROLE_OFFBOARDING_MANAGER'})")
 	@DeleteMapping("/{trainingId}")
 	public String deleteTraining(@PathVariable("trainingId") String trainingId) {
 		service.deleteTraining(trainingId);

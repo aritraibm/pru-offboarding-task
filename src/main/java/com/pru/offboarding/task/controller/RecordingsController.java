@@ -26,27 +26,27 @@ public class RecordingsController {
 	@Autowired
 	private RecordingService recordingService;
 	
-	@PreAuthorize("hasAnyRole({'ROLE_ASSOCIATE','ROLE_ONBOARDING_REVIEWER','ROLE_ONBOARDING_MANAGER'})")
+	@PreAuthorize("hasAnyRole({'ROLE_ASSOCIATE','ROLE_OFFBOARDING_REVIEWER','ROLE_OFFBOARDING_MANAGER'})")
 	@GetMapping("/get-all-recordings")
 	public List<Recording> getAllRecording(){
 		List<Recording> recording= recordingService.getAllRecording();
 		return recording;
 	}
 	
-	@PreAuthorize("hasAnyRole({'ROLE_ONBOARDING_REVIEWER','ROLE_ONBOARDING_MANAGER'})")
+	@PreAuthorize("hasAnyRole({'ROLE_OFFBOARDING_REVIEWER','ROLE_OFFBOARDING_MANAGER'})")
 	@PostMapping("/add-recording")
 	public Recording saveRecording(@RequestBody Recording newRecording){
 		Recording recording= recordingService.insertRecording(newRecording);
 		return recording;
 	}
 	
-	@PreAuthorize("hasAnyRole({'ROLE_ONBOARDING_REVIEWER','ROLE_ONBOARDING_MANAGER'})")
+	@PreAuthorize("hasAnyRole({'ROLE_OFFBOARDING_REVIEWER','ROLE_OFFBOARDING_MANAGER'})")
 	@DeleteMapping("/{id}")
 	public Boolean deleteRecordByID(@PathVariable("id")String id){
 		return recordingService.deleteRecord(id);
 	}
 	
-	@PreAuthorize("hasAnyRole({'ROLE_ONBOARDING_REVIEWER','ROLE_ONBOARDING_MANAGER'})")
+	@PreAuthorize("hasAnyRole({'ROLE_OFFBOARDING_REVIEWER','ROLE_OFFBOARDING_MANAGER'})")
 	@PutMapping("/{id}")
 	public Recording updateRecordByID(@PathVariable("id")String id,@RequestBody Recording recording){
 		Optional<Recording> rec= recordingService.findRecord(id);

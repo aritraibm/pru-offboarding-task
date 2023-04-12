@@ -23,7 +23,7 @@ public class OnBoardingChecklistController {
 	private OffBoardingChecklistService service;
 	
 	
-	@PreAuthorize("hasAnyRole({'ROLE_ONBOARDING_REVIEWER','ROLE_ONBOARDING_MANAGER'})")
+	@PreAuthorize("hasAnyRole({'ROLE_OFFBOARDING_REVIEWER','ROLE_OFFBOARDING_MANAGER'})")
 	@PostMapping(path = "/add-offboarding-checklist",consumes = "application/json")
 	public OffBoardingChecklist addOnBoarding(@RequestBody OffBoardingChecklist checklist) {
 		System.out.println("checklist single >>>>"+checklist);
@@ -32,13 +32,13 @@ public class OnBoardingChecklistController {
 	}
 	
 	@PostMapping("/add-all-offboarding-checklist")
-	@PreAuthorize("hasAnyRole({'ROLE_ONBOARDING_REVIEWER','ROLE_ONBOARDING_MANAGER'})")
+	@PreAuthorize("hasAnyRole({'ROLE_OFFBOARDING_REVIEWER','ROLE_OFFBOARDING_MANAGER'})")
 	public List<OffBoardingChecklist> addAllOffBoarding(@RequestBody List<OffBoardingChecklist> checklists){
 		System.out.println("checklists >>>>"+checklists);
 		return service.saveAllOffBoardingChecklist(checklists);
 	}
 		
-	@PreAuthorize("hasAnyRole({'ROLE_ASSOCIATE','ROLE_ONBOARDING_REVIEWER','ROLE_ONBOARDING_MANAGER'})")
+	@PreAuthorize("hasAnyRole({'ROLE_ASSOCIATE','ROLE_OFFBOARDING_REVIEWER','ROLE_OFFBOARDING_MANAGER'})")
 	@GetMapping("/get-all-offboarding-checklist")
 	public List<OffBoardingChecklist> getAllOffBoarding(){
 		List<OffBoardingChecklist> boardingChecklists= service.getAllOffBoardingChecklist();
@@ -46,7 +46,7 @@ public class OnBoardingChecklistController {
 	}
 	
 	
-	@PreAuthorize("hasAnyRole({'ROLE_ONBOARDING_REVIEWER','ROLE_ONBOARDING_MANAGER'})")
+	@PreAuthorize("hasAnyRole({'ROLE_OFFBOARDING_REVIEWER','ROLE_OFFBOARDING_MANAGER'})")
 	@GetMapping("/{id}")
 	public OffBoardingChecklist getOffBoardingById(@PathVariable(name = "id") String id) {
 		OffBoardingChecklist boardingChecklist=null;
@@ -55,7 +55,7 @@ public class OnBoardingChecklistController {
 	}
 	
 	@DeleteMapping("/{id}")
-	@PreAuthorize("hasRole('ROLE_ONBOARDING_MANAGER')")
+	@PreAuthorize("hasRole('ROLE_OFFBOARDING_MANAGER')")
 	public String deleteOffBoarding(@PathVariable(name = "id") String id) {
 		service.deleteOffBoardingChecklist(id);
 		return "Task "+id+" has been deleted.";
