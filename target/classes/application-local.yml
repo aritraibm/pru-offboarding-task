@@ -1,0 +1,17 @@
+server:
+  port: 9094
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://${IPDB}:27017/offboardstore
+      database: offboardstore
+      ssl:
+        enabled: false
+        invalidHostNameAllowed: true
+        trust-store: /rds-truststore.jks
+        trust-store-password: mnbvcxz
+  application:
+    name: OFFBOARDING-TASK
+  config:
+    import: optional:configserver:http://${CNF}:9296/

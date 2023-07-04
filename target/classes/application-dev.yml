@@ -1,0 +1,72 @@
+server:
+  port: 9094
+  
+spring:
+  data:
+    mongodb:
+        uri: mongodb://localhost:27017/?readPreference=primary&ssl=false
+        database : myd
+#      uri: mongodb://Manideep1:Manideep1@docdb-2023-05-29-07-06-57.czzwddiesvbx.ap-south-1.docdb.amazonaws.com:27017/?ssl=true&ssl_ca_certs=ap-south-1-bundle.pem&retryWrites=false
+#      database: mydb
+#      ssl:
+#        enabled: true
+#        invalidHostNameAllowed: true
+#        trust-store: /rds-truststore.jks
+#        trust-store-password: mnbvcxz
+  application:
+    name: ONBOARDING-TASK
+  config:
+        activate:
+            on-profile: dev
+logging:
+  file.name: C:/Users/002TCO744/Desktop/elk-logs/associate-service.log
+
+#eureka:
+#  instance:
+#    hostname: ${vcap.application.uris[0]:10.5.0.5}
+#    prefer-ip-address: true
+#    lease-renewal-interval-in-seconds: 10
+#    lease-expiration-duration-in-seconds: 20
+#  client:
+#    serviceUrl:
+#      defaultZone: http://10.5.0.5:8761/eureka
+eureka:
+  instance:
+    instance-id: ${spring.application.name}
+    prefer-ip-address: false
+  client:
+    enabled: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+#  zipkin:
+#    base-url: http://127.0.0.1:9411/
+    
+#logging:
+#  file.name: C:/Users/002TCO744/Desktop/elk-logs/associate-service.log
+
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url: 
+#      defaultZone: http://localhost:8761/eureka/
+#  instance:
+#    hostname: localhost
+   
+#jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate:
+#       dialect = org.hibernate.dialect.PostgreSQLDialect
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/postgres
+#    username: postgres
+#    password: admin
+#    driverClassName: org.postgresql.Driver
+
+#data:
+#    mongodb:
+#      uri: mongodb+srv://root:WBJsDZphl9loQGt4@mongodb.lqmn4.mongodb.net/onboarding-prudential?retryWrites=true&w=majority
+  
