@@ -31,11 +31,8 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 			return;
 		}
 
-		String token = getAccessToken(request);
-		if (!jwtUtil.validateToken(token)) {
-			filterChain.doFilter(request, response);
-			return;
-		}
+		String token = request.getHeader("Authorization").split(" ")[1].trim();
+		System.out.println("token in filter "+token);
 
 		setAuthenticationContext(token, request);
 		filterChain.doFilter(request, response);
@@ -43,17 +40,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
 	private boolean hasAuthorizationBearer(HttpServletRequest request) {
 		String header = request.getHeader("Authorization");
-		if (ObjectUtils.isEmpty(header) || !header.startsWith("Bearer")) {
-			return false;
-		}
-
-		return true;
-	}
-
-	private String getAccessToken(HttpServletRequest request) {
-		String header = request.getHeader("Authorization");
-		String token = header.split(" ")[1].trim();
-		return token;
+		return !ObjectUtils.isEmpty(header) && header.startsWith("Bearer");
 	}
 
 	private void setAuthenticationContext(String token, HttpServletRequest request) {

@@ -50,4 +50,10 @@ public class Training {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
+	public Training(String trainingName, String link, String remarks) {
+		super();
+		this.trainingName = trainingName;
+		this.link = link;
+		this.remarks = remarks;
+	}
 }

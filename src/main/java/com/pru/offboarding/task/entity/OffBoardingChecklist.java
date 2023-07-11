@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Document(collection = "offboardingchecklists")
+@Document(collection = "onboardingchecklists")
 public class OffBoardingChecklist {
 
 	@Id
@@ -66,6 +66,15 @@ public class OffBoardingChecklist {
 	}
 
 	public void setLinkName(String linkName) {
+		this.linkName = linkName;
+	}
+
+	public OffBoardingChecklist(String questions, String status, String comment, String link, String linkName) {
+		super();
+		this.questions = questions;
+		this.status = status;
+		this.comment = comment;
+		this.link = link;
 		this.linkName = linkName;
 	}
 

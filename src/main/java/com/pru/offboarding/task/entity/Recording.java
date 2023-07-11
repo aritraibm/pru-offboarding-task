@@ -19,4 +19,10 @@ public class Recording {
 	private String recordLink;
 	private String recordLinkPassword;
 
+	public Recording(String recordDesc, String recordLink, String recordLinkPassword) {
+		super();
+		this.recordDesc = recordDesc;
+		this.recordLink = recordLink;
+		this.recordLinkPassword = recordLinkPassword;
+	}
 }

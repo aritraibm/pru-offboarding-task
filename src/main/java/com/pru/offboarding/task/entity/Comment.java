@@ -19,8 +19,7 @@ public class Comment {
 
 	@Id
 	private String commentId;
-	private String msgId;
-	private String versionNo;
+//	private String parentId;
 	private String empId;
 	private String comments;
 	@JsonFormat(pattern = "yyyy-MM-dd")
