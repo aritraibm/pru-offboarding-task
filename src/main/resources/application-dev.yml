@@ -4,57 +4,14 @@ server:
 spring:
   data:
     mongodb:
-      host: localhost
-      port: 27017
-      database: mydb
+      uri: mongodb://mongoonbrd:mongoonbrd@docdb-2023-05-11-18-02-52.c9bnvhq6g6em.ap-south-1.docdb.amazonaws.com:27017/?ssl=true&ssl_ca_certs=rds-combined-ca-bundle.pem&retryWrites=false
+      database : test
+      ssl:
+        enabled: true
+        invalidHostNameAllowed: true
+        trust-store: /rds-truststore.jks
+        trust-store-password: mnbvcxz
   application:
     name: ONBOARDING-TASK
   config:
-        activate:
-            on-profile: dev
-        import: optional:configserver:http://localhost:9296/
-logging:
-  file.name: C:/Users/002TCO744/Desktop/elk-logs/associate-service.log
-
-#eureka:
-#  instance:
-#    hostname: ${vcap.application.uris[0]:10.5.0.5}
-#    prefer-ip-address: true
-#    lease-renewal-interval-in-seconds: 10
-#    lease-expiration-duration-in-seconds: 20
-#  client:
-#    serviceUrl:
-#      defaultZone: http://10.5.0.5:8761/eureka
-      
-#  zipkin:
-#    base-url: http://127.0.0.1:9411/
-    
-#logging:
-#  file.name: C:/Users/002TCO744/Desktop/elk-logs/associate-service.log
-
-#eureka:
-#  client:
-#    register-with-eureka: true
-#    fetch-registry: true
-#    service-url: 
-#      defaultZone: http://localhost:8761/eureka/
-#  instance:
-#    hostname: localhost
-   
-#jpa:
-#    show-sql: true
-#    hibernate:
-#      ddl-auto: update
-#    properties:
-#      hibernate:
-#       dialect = org.hibernate.dialect.PostgreSQLDialect
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/postgres
-#    username: postgres
-#    password: admin
-#    driverClassName: org.postgresql.Driver
-
-#data:
-#    mongodb:
-#      uri: mongodb+srv://root:WBJsDZphl9loQGt4@mongodb.lqmn4.mongodb.net/onboarding-prudential?retryWrites=true&w=majority
-  
+    import: optional:configserver:http://localhost:9296/

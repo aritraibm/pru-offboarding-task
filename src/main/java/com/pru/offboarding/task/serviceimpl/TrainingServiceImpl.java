@@ -10,6 +10,8 @@ import com.pru.offboarding.task.exception.TrainingNotFoundException;
 import com.pru.offboarding.task.repo.TrainingRepo;
 import com.pru.offboarding.task.service.TrainingService;
 
+
+
 @Service
 public class TrainingServiceImpl implements TrainingService{
 	@Autowired
@@ -27,8 +29,7 @@ public class TrainingServiceImpl implements TrainingService{
 		trng.setTrainingName(training.getTrainingName());
 		trng.setLink(training.getLink());
 		trng.setRemarks(training.getRemarks());
-		Training updatedTraining = repo.save(trng);
-		return updatedTraining;
+		return repo.save(trng);
 
 	}
 
